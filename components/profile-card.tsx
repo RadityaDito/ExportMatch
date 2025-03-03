@@ -128,6 +128,10 @@ export default function BuyerCard() {
       // Always match with the buyer whose ID is 1
       const matchedBuyer = buyers.find((b) => b.id === 1) || buyers[0];
       setMatchedBuyer(matchedBuyer);
+    }
+
+    // random 40 % chance to setShowMatch(true)
+    if (currentIndex >= 2) {
       setTimeout(() => {
         setShowMatch(true);
       }, 500);

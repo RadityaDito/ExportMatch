@@ -1,14 +1,38 @@
-"use client"
+"use client";
 
-import { useState, useRef } from "react"
-import Image from "next/image"
-import { motion, type PanInfo, useMotionValue, useTransform, useAnimation } from "framer-motion"
-import { X, Check, Info, Globe, Package, DollarSign, Briefcase } from "lucide-react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { useState, useRef } from "react";
+import Image from "next/image";
+import {
+  motion,
+  type PanInfo,
+  useMotionValue,
+  useTransform,
+  useAnimation,
+} from "framer-motion";
+import {
+  X,
+  Check,
+  Info,
+  Globe,
+  Package,
+  DollarSign,
+  Briefcase,
+} from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 // Preserve all buyer details
 const buyers = [
@@ -57,61 +81,74 @@ const buyers = [
     status: "Active",
     exportReadinessScore: 5,
   },
-]
+];
 
 export default function BuyerCard() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [showInfo, setShowInfo] = useState(false)
-  const [showMatch, setShowMatch] = useState(false)
-  const [matchedBuyer, setMatchedBuyer] = useState<(typeof buyers)[0] | null>(null)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showInfo, setShowInfo] = useState(false);
+  const [showMatch, setShowMatch] = useState(false);
+  const [matchedBuyer, setMatchedBuyer] = useState<(typeof buyers)[0] | null>(
+    null
+  );
 
-  const x = useMotionValue(0)
-  const rotate = useTransform(x, [-200, 200], [-30, 30])
-  const opacity = useTransform(x, [-200, -100, 0, 100, 200], [0, 1, 1, 1, 0])
+  const x = useMotionValue(0);
+  const rotate = useTransform(x, [-200, 200], [-30, 30]);
+  const opacity = useTransform(x, [-200, -100, 0, 100, 200], [0, 1, 1, 1, 0]);
 
-  const cardControls = useAnimation()
-  const containerRef = useRef<HTMLDivElement>(null)
+  const cardControls = useAnimation();
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const buyer = buyers[currentIndex]
+  const buyer = buyers[currentIndex];
 
-  const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+  const handleDragEnd = (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) => {
     if (info.offset.x > 100) {
-      handleSwipe("right")
+      handleSwipe("right");
     } else if (info.offset.x < -100) {
-      handleSwipe("left")
+      handleSwipe("left");
     } else {
-      cardControls.start({ x: 0, transition: { type: "spring", stiffness: 300, damping: 20 } })
+      cardControls.start({
+        x: 0,
+        transition: { type: "spring", stiffness: 300, damping: 20 },
+      });
     }
-  }
+  };
 
   const handleSwipe = async (dir: "left" | "right") => {
-    const multiplier = dir === "left" ? -1 : 1
+    const multiplier = dir === "left" ? -1 : 1;
     await cardControls.start({
       x: multiplier * (containerRef.current?.offsetWidth || 300),
       opacity: 0,
       transition: { duration: 0.3 },
-    })
+    });
 
     if (dir === "right") {
-      setMatchedBuyer(buyer)
+      // Always match with the buyer whose ID is 1
+      const matchedBuyer = buyers.find((b) => b.id === 1) || buyers[0];
+      setMatchedBuyer(matchedBuyer);
       setTimeout(() => {
-        setShowMatch(true)
-      }, 500)
+        setShowMatch(true);
+      }, 500);
     }
 
     if (currentIndex < buyers.length - 1) {
-      setCurrentIndex(currentIndex + 1)
+      setCurrentIndex(currentIndex + 1);
     } else {
-      setCurrentIndex(0)
+      setCurrentIndex(0);
     }
 
-    cardControls.set({ x: 0, opacity: 1 })
-  }
+    cardControls.set({ x: 0, opacity: 1 });
+  };
 
-  if (!buyer) return null
+  if (!buyer) return null;
 
   return (
-    <div className="relative w-full max-w-sm flex flex-col min-h-[calc(100vh-16rem)]" ref={containerRef}>
+    <div
+      className="relative w-full max-w-sm flex flex-col min-h-[calc(100vh-16rem)]"
+      ref={containerRef}
+    >
       <motion.div
         className="relative bg-white rounded-xl overflow-hidden shadow-lg flex-1"
         drag="x"
@@ -121,7 +158,12 @@ export default function BuyerCard() {
         onDragEnd={handleDragEnd}
       >
         <div className="relative aspect-[3/4] bg-gray-200">
-          <Image src={buyer.image || "/placeholder.svg"} alt={buyer.name} fill className="object-cover" />
+          <Image
+            src={buyer.image || "/placeholder.svg"}
+            alt={buyer.name}
+            fill
+            className="object-cover"
+          />
           <button
             className="absolute top-4 right-4 bg-white rounded-full p-2 opacity-80"
             onClick={() => setShowInfo(true)}
@@ -210,7 +252,12 @@ export default function BuyerCard() {
           <ScrollArea className="max-h-[calc(90vh-8rem)]">
             <div className="space-y-4 p-1">
               <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-                <Image src={buyer.image || "/placeholder.svg"} alt={buyer.name} fill className="object-cover" />
+                <Image
+                  src={buyer.image || "/placeholder.svg"}
+                  alt={buyer.name}
+                  fill
+                  className="object-cover"
+                />
               </div>
 
               <div>
@@ -223,19 +270,27 @@ export default function BuyerCard() {
                 <ul className="grid gap-2 text-sm">
                   <li className="flex items-center gap-2">
                     <Globe className="h-4 w-4 text-gray-400" />
-                    <span className="font-medium">Country:</span> {buyer.country}
+                    <span className="font-medium">Country:</span>{" "}
+                    {buyer.country}
                   </li>
                   <li className="flex items-center gap-2">
                     <Package className="h-4 w-4 text-gray-400" />
-                    <span className="font-medium">Product Interest:</span> {buyer.productInterest}
+                    <span className="font-medium">Product Interest:</span>{" "}
+                    {buyer.productInterest}
                   </li>
                   <li className="flex items-center gap-2">
                     <DollarSign className="h-4 w-4 text-gray-400" />
-                    <span className="font-medium">Annual Import Volume:</span> {buyer.annualImportVolume}
+                    <span className="font-medium">
+                      Annual Import Volume:
+                    </span>{" "}
+                    {buyer.annualImportVolume}
                   </li>
                   <li className="flex items-center gap-2">
                     <Briefcase className="h-4 w-4 text-gray-400" />
-                    <span className="font-medium">Preferred Shipping Terms:</span> {buyer.preferredShippingTerms}
+                    <span className="font-medium">
+                      Preferred Shipping Terms:
+                    </span>{" "}
+                    {buyer.preferredShippingTerms}
                   </li>
                 </ul>
               </div>
@@ -244,7 +299,10 @@ export default function BuyerCard() {
                 <h3 className="font-semibold text-lg mb-2">Certifications</h3>
                 <div className="flex flex-wrap gap-2">
                   {buyer.certifications.map((cert, index) => (
-                    <span key={index} className="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full">
+                    <span
+                      key={index}
+                      className="bg-gray-100 text-gray-800 text-xs px-3 py-1 rounded-full"
+                    >
                       {cert}
                     </span>
                   ))}
@@ -270,13 +328,19 @@ export default function BuyerCard() {
             <div className="text-center mb-6">
               <h2 className="text-2xl font-bold mb-2">It's a Match!</h2>
               <p className="text-sm">
-                You and {matchedBuyer?.name} have expressed interest in doing business together!
+                You and {matchedBuyer?.name} have expressed interest in doing
+                business together!
               </p>
             </div>
 
             <div className="flex items-center justify-center gap-4 mb-6">
               <div className="relative h-20 w-20 rounded-full border-2 border-white overflow-hidden">
-                <Image src="/placeholder.svg?height=100&width=100" alt="Your company" fill className="object-cover" />
+                <Image
+                  src="/placeholder.svg?height=100&width=100"
+                  alt="Your company"
+                  fill
+                  className="object-cover"
+                />
               </div>
               <div className="relative h-20 w-20 rounded-full border-2 border-white overflow-hidden">
                 <Image
@@ -289,10 +353,18 @@ export default function BuyerCard() {
             </div>
 
             <div className="flex gap-3 w-full">
-              <Button variant="secondary" className="flex-1 text-sm" onClick={() => setShowMatch(false)}>
+              <Button
+                variant="secondary"
+                className="flex-1 text-sm"
+                onClick={() => setShowMatch(false)}
+              >
                 Keep Browsing
               </Button>
-              <Link href={`/messages/${matchedBuyer?.id}`} className="flex-1" onClick={() => setShowMatch(false)}>
+              <Link
+                href={`/messages/${matchedBuyer?.id}`}
+                className="flex-1"
+                onClick={() => setShowMatch(false)}
+              >
                 <Button className="w-full text-sm">Send Message</Button>
               </Link>
             </div>
@@ -300,6 +372,5 @@ export default function BuyerCard() {
         </DialogContent>
       </Dialog>
     </div>
-  )
+  );
 }
-

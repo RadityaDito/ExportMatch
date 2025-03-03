@@ -9,17 +9,7 @@ const conversations = [
     id: 1,
     name: "Global Imports Co.",
     lastMessage:
-      "Hello, I see you're interested in organic fruits. Can you share your requirements?",
-    time: "Just now",
-    image: "/placeholder.svg?height=100&width=100",
-    country: "Singapore",
-    status: "Active",
-  },
-  {
-    id: 1,
-    name: "Global Imports Co.",
-    lastMessage:
-      "Hello, I see you're interested in organic fruits. Can you share your requirements?",
+      "Hello! We're interested in your organic fruits. Can you tell us more about your available products and pricing?",
     time: "Just now",
     image: "/placeholder.svg?height=100&width=100",
     country: "Singapore",

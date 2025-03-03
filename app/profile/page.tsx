@@ -15,21 +15,21 @@ import { Button } from "@/components/ui/button";
 
 // Mock exporter profile data
 const exporterProfile = {
-  name: "John Smith",
-  companyName: "Southeast Asian Exports Inc.",
-  country: "Thailand",
+  name: "Budi Santoso",
+  companyName: "Nusantara Exports Inc.",
+  country: "Indonesia",
   productsAvailable: [
     "Organic Fruits",
     "Sustainable Textiles",
     "Artisanal Crafts",
   ],
   businessDescription:
-    "Leading exporter of high-quality organic produce and sustainable goods from Thailand. With over 15 years of experience, we pride ourselves on connecting local producers with international markets in Southeast Asia.",
-  contactEmail: "john@seaexports.com",
-  contactPhone: "+66 2 123 4567",
+    "Leading exporter of high-quality organic produce and sustainable goods from Indonesia. With over 15 years of experience, we pride ourselves on connecting local producers with international markets in Southeast Asia.",
+  contactEmail: "budi@nusantaraexports.com",
+  contactPhone: "+62 21 123 4567",
   yearsOfExperience: 15,
   certifications: [
-    "Organic Thailand",
+    "Organic Indonesia",
     "ASEAN Good Agricultural Practices",
     "ISO 9001",
   ],

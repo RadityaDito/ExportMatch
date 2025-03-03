@@ -22,47 +22,77 @@ const sampleChat = {
       id: 1,
       sender: "Global Imports Co.",
       content:
-        "Hello! We're interested in your organic fruits. Can you tell us more about your available products?",
-      timestamp: "10:00 AM",
-    },
-    {
-      id: 2,
-      sender: "You",
-      content:
-        "Certainly! We offer a wide range of organic fruits, including mangoes, pineapples, and papayas. All our products are certified organic and sourced from local farms.",
-      timestamp: "10:05 AM",
-    },
-    {
-      id: 3,
-      sender: "Global Imports Co.",
-      content: "That sounds great! What's your typical lead time for orders?",
-      timestamp: "10:10 AM",
+        "Hello! We're interested in your organic fruits. Can you tell us more about your available products and pricing?",
+      timestamp: new Date().toLocaleTimeString(),
     },
   ],
 };
 
+const simulatedResponses = [
+  {
+    question: "What are your shipping options and minimum order quantities?",
+    answer:
+      "We ship worldwide via air and sea freight. Our minimum order is 100kg for air and a full container for sea. Which option suits you?",
+  },
+  {
+    question: "How do you ensure quality and freshness during transit?",
+    answer:
+      "We use cold storage and controlled packaging to maintain freshness. Temperature logs are available upon request.",
+  },
+  {
+    question: "Do you have sustainability practices?",
+    answer:
+      "Yes, we use biodegradable packaging and support organic farming. Would you like details on our certifications?",
+  },
+];
+
 export default function ChatPage() {
   const { id } = useParams();
-  const [chat, setChat] = useState(sampleChat); // Initialize chat state
-  const [newMessage, setNewMessage] = useState("");
+  const [chat, setChat] = useState(sampleChat);
+  const [newMessage, setNewMessage] = useState(
+    "We offer organic mangoes, pineapples, and papayas at competitive prices. Pricing varies by quantity and season. Would you like a detailed price list?"
+  );
+  const [isTyping, setIsTyping] = useState(false);
+  const [simulationIndex, setSimulationIndex] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const handleSendMessage = (e: any) => {
     e.preventDefault();
-    // Add message to chat state
-    setChat({
-      ...chat,
-      messages: [
-        ...chat.messages,
-        {
-          id: Date.now(),
-          sender: "You",
-          content: newMessage,
-          timestamp: new Date().toLocaleTimeString(),
-        },
-      ],
-    });
+    if (newMessage.trim() === "") return;
+
+    const userMessage = {
+      id: Date.now(),
+      sender: "You",
+      content: newMessage,
+      timestamp: new Date().toLocaleTimeString(),
+    };
+
+    setChat((prevChat) => ({
+      ...prevChat,
+      messages: [...prevChat.messages, userMessage],
+    }));
     setNewMessage("");
+    setIsTyping(true);
+
+    setTimeout(() => {
+      if (simulationIndex < simulatedResponses.length) {
+        const botMessage = {
+          id: Date.now() + 1,
+          sender: chat.name,
+          content: simulatedResponses[simulationIndex].question,
+          timestamp: new Date().toLocaleTimeString(),
+        };
+        setChat((prevChat) => ({
+          ...prevChat,
+          messages: [...prevChat.messages, botMessage],
+        }));
+        setIsTyping(false);
+        setSimulationIndex(simulationIndex + 1);
+        setNewMessage(simulatedResponses[simulationIndex].answer);
+      } else {
+        setIsTyping(false);
+      }
+    }, 2000);
   };
 
   const handleQuickAction = (action: string) => {
@@ -85,7 +115,7 @@ export default function ChatPage() {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, []); // Update dependency to chat.messages
+  }, []);
 
   return (
     <div className="fixed inset-0 flex flex-col bg-gray-50">
@@ -144,6 +174,13 @@ export default function ChatPage() {
               </div>
             </div>
           ))}
+          {isTyping && (
+            <div className="flex justify-start">
+              <div className="bg-gray-200 rounded-full px-4 py-2">
+                <span className="text-gray-500 text-sm">Typing...</span>
+              </div>
+            </div>
+          )}
           <div ref={messagesEndRef} />
         </div>
       </main>

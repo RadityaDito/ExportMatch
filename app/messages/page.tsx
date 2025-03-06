@@ -7,12 +7,12 @@ import { AiAssistantButton } from "@/components/ai-assistant-button";
 const conversations = [
   {
     id: 1,
-    name: "Global Imports Co.",
+    name: "HACO ASIA PACIFIC SDN BHD",
     lastMessage:
-      "Hello! We're interested in your organic fruits. Can you tell us more about your available products and pricing?",
+      "Hello! We're interested in sourcing high-quality green coffee. Could you provide details on your available varieties, certifications, and pricing?",
     time: "Just now",
     image: "/placeholder.svg?height=100&width=100",
-    country: "Singapore",
+    country: "Malaysia",
     status: "Active",
   },
 ];

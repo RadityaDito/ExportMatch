@@ -18,20 +18,16 @@ const exporterProfile = {
   name: "Budi Santoso",
   companyName: "Nusantara Exports Inc.",
   country: "Indonesia",
-  productsAvailable: [
-    "Organic Fruits",
-    "Sustainable Textiles",
-    "Artisanal Crafts",
-  ],
+  productsAvailable: ["Coffee", "Palm Oil", "Herbal Supplements"],
   businessDescription:
-    "Leading exporter of high-quality organic produce and sustainable goods from Indonesia. With over 15 years of experience, we pride ourselves on connecting local producers with international markets in Southeast Asia.",
+    "Leading exporter of high-quality coffee, sustainable palm oil, and herbal supplements from Indonesia. With over 15 years of experience, we specialize in connecting local producers with international markets, ensuring sustainable and ethical sourcing.",
   contactEmail: "budi@nusantaraexports.com",
   contactPhone: "+62 21 123 4567",
   yearsOfExperience: 15,
   certifications: [
-    "Organic Indonesia",
-    "ASEAN Good Agricultural Practices",
-    "ISO 9001",
+    "Fair Trade Certified",
+    "Rainforest Alliance",
+    "ISO 22000 - Food Safety Management",
   ],
   image: "/placeholder.svg?height=400&width=300",
 };

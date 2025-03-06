@@ -13,16 +13,16 @@ const quickActions = ["Request Samples", "Schedule Call"];
 
 const sampleChat = {
   id: 1,
-  name: "Global Imports Co.",
+  name: "HACO ASIA PACIFIC SDN BHD",
   image: "/placeholder.svg",
-  country: "Singapore",
+  country: "Malaysia",
   status: "Active",
   messages: [
     {
       id: 1,
-      sender: "Global Imports Co.",
+      sender: "HACO ASIA PACIFIC SDN BHD",
       content:
-        "Hello! We're interested in your organic fruits. Can you tell us more about your available products and pricing?",
+        "Hello! We're interested in sourcing high-quality green coffee. Could you provide details on your available varieties, certifications, and pricing?",
       timestamp: new Date().toLocaleTimeString(),
     },
   ],
@@ -30,19 +30,19 @@ const sampleChat = {
 
 const simulatedResponses = [
   {
-    question: "What are your shipping options and minimum order quantities?",
+    question: "What varieties of green coffee do you offer?",
     answer:
-      "We ship worldwide via air and sea freight. Our minimum order is 100kg for air and a full container for sea. Which option suits you?",
+      "We offer premium Arabica and Robusta green coffee sourced from sustainable farms. Would you like to know more about our processing methods?",
   },
   {
-    question: "How do you ensure quality and freshness during transit?",
+    question: "What certifications do your coffee beans have?",
     answer:
-      "We use cold storage and controlled packaging to maintain freshness. Temperature logs are available upon request.",
+      "Our coffee is certified by Fair Trade and ISO 22000 for food safety, ensuring high quality and ethical sourcing.",
   },
   {
-    question: "Do you have sustainability practices?",
+    question: "Can you provide details on pricing and bulk order options?",
     answer:
-      "Yes, we use biodegradable packaging and support organic farming. Would you like details on our certifications?",
+      "Our pricing depends on the coffee grade and order volume. We provide competitive rates for bulk orders. Do you have a target quantity in mind?",
   },
 ];
 
@@ -50,7 +50,7 @@ export default function ChatPage() {
   const { id } = useParams();
   const [chat, setChat] = useState(sampleChat);
   const [newMessage, setNewMessage] = useState(
-    "We offer organic mangoes, pineapples, and papayas at competitive prices. Pricing varies by quantity and season. Would you like a detailed price list?"
+    "We offer various green coffee varieties, including Arabica and Robusta. Our coffee is certified by Fair Trade and ISO 22000. Do you have specific quality requirements or volume needs?"
   );
   const [isTyping, setIsTyping] = useState(false);
   const [simulationIndex, setSimulationIndex] = useState(0);

@@ -356,7 +356,7 @@ export default function BuyerCard() {
             <div className="flex items-center justify-center gap-4 mb-6">
               <div className="relative h-20 w-20 rounded-full border-2 border-white overflow-hidden">
                 <Image
-                  src="/placeholder.svg?height=100&width=100"
+                  src="/user-budi.jpg?height=100&width=100"
                   alt="Your company"
                   fill
                   className="object-cover"

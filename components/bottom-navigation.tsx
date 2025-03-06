@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { User, Search, MessageCircle } from "lucide-react"
-import { usePathname } from "next/navigation"
+import Link from "next/link";
+import { User, Search, MessageCircle } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function BottomNavigation() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 bg-white z-10">
@@ -35,10 +35,9 @@ export default function BottomNavigation() {
           }`}
         >
           <MessageCircle className="h-6 w-6" />
-          <span className="text-xs mt-1">Inquiries</span>
+          <span className="text-xs mt-1">Chat</span>
         </Link>
       </div>
     </div>
-  )
+  );
 }
-

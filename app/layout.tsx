@@ -7,7 +7,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ExportMatch",
+  title: "Expora - B2B Export Matching Platform",
   description: "B2B Export Matching Platform",
   viewport: {
     width: "device-width",

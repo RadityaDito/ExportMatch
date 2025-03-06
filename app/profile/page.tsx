@@ -29,7 +29,7 @@ const exporterProfile = {
     "Rainforest Alliance",
     "ISO 22000 - Food Safety Management",
   ],
-  image: "/placeholder.svg?height=400&width=300",
+  image: "/user-budi.jpg?height=400&width=300",
 };
 
 export default function ProfilePage() {

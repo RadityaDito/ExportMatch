@@ -42,7 +42,7 @@ const buyers = [
     country: "Malaysia",
     productInterest: "Green Coffee",
     bio: "A major importer of green coffee, HACO Asia Pacific Sdn Bhd has sourced from multiple suppliers across the globe, ensuring high-quality coffee supply for its operations. With over 1,600 total import shipments, the company is a key player in the coffee import industry in Malaysia.",
-    image: "/placeholder.svg?height=600&width=400",
+    image: "/haco-swiss.jpg?height=600&width=400",
     annualImportVolume:
       "Varies (Recent import: 75,900 KGS in Aug 2022, 38,674 KGS in Mar 2022)",
     preferredShippingTerms: "FOB",
@@ -58,7 +58,7 @@ const buyers = [
     country: "Thailand",
     productInterest: "Sustainable fabrics and clothing",
     bio: "Boutique clothing manufacturer seeking eco-friendly textiles and ready-made garments. We're committed to sustainability and are looking for partners who share our vision for environmentally responsible fashion.",
-    image: "/placeholder.svg?height=600&width=400",
+    image: "/ecotextile-product.jpg?height=600&width=400",
     annualImportVolume: "$2-5 million",
     preferredShippingTerms: "DAP",
     certifications: ["GOTS", "OEKO-TEX"],
@@ -73,7 +73,7 @@ const buyers = [
     country: "Vietnam",
     productInterest: "Palm Oil and Food Products",
     bio: "A leading importer based in Vietnam with over 4,041 recorded import shipments. T M A Co Ltd sources palm oil, food products, and other commodities from key Southeast Asian suppliers, including Malaysia, Indonesia, and Singapore.",
-    image: "/placeholder.svg?height=600&width=400",
+    image: "/logo-TMA.png?height=600&width=400",
     annualImportVolume: "USD 109.86 million",
     preferredShippingTerms: "CIF",
     certifications: ["ISO 22000 - Food Safety", "HACCP"],
@@ -88,7 +88,7 @@ const buyers = [
     country: "Vietnam",
     productInterest: "Herbal Products",
     bio: "INTERHERBAL CO LTD is a key importer of herbal products in Vietnam, with 559 recorded import shipments and a strong focus on sourcing high-quality herbal ingredients. The company collaborates with select suppliers to meet the growing demand for natural health products.",
-    image: "/placeholder.svg?height=600&width=400",
+    image: "/interherb-logo.png?height=600&width=400",
     annualImportVolume: "Not specified (Recent imports: 200 PCS, 108 PCS)",
     preferredShippingTerms: "DAP",
     certifications: ["GMP", "ISO 22000 - Food Safety"],
@@ -182,7 +182,7 @@ export default function BuyerCard() {
             src={buyer.image || "/placeholder.svg"}
             alt={buyer.name}
             fill
-            className="object-cover"
+            className="object-fill"
           />
           <button
             className="absolute top-4 right-4 bg-white rounded-full p-2 opacity-80"
